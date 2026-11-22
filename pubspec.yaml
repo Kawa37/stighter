@@ -1,0 +1,33 @@
+name: stighter
+description: "A new Flutter project."
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+    sdk: ^3.13.3
+
+dependencies:
+    flutter:
+        sdk: flutter
+
+    cupertino_icons: ^1.0.8
+    flame: ^1.38.2
+    flame_tiled: ^3.1.2
+
+dev_dependencies:
+    flutter_test:
+        sdk: flutter
+
+    flutter_lints: ^6.0.0
+
+flutter:
+    uses-material-design: true
+    assets:
+        - assets/tiles/
+        - assets/images/Terrain/
+        - assets/images/Main Characters/Mask Dude/
+        - assets/images/Main Characters/Ninja Frog/
+        - assets/images/Main Characters/Pink Man/
+        - assets/images/Main Characters/Virtual Guy/
