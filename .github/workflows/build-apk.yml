@@ -1,37 +1,12 @@
-name: Build Flutter APK
-
-on:
-    push:
-        branches: ["master", "main"]
+on: push
 
 jobs:
-    build-apk:
+    build:
         runs-on: ubuntu-latest
-
         steps:
-            - name: Checkout repo
-              uses: actions/checkout@v4
-
-            - name: Set up Java
-              uses: actions/setup-java@v4
+            - uses: actions/checkout@v4
+            - run: flutter build apk --split-per-abi --android-skip-build-dependency-validation
+            - uses: actions/upload-artifact@v4
               with:
-                  distribution: temurin
-                  java-version: "17"
-
-            - name: Set up Flutter
-              uses: subosito/flutter-action@v2
-              with:
-                  channel: stable
-                  cache: true
-
-            - name: Install dependencies
-              run: flutter pub get
-
-            - name: Build split APKs
-              run: flutter build apk --split-per-abi
-
-            - name: Upload APKs
-              uses: actions/upload-artifact@v4
-              with:
-                  name: flutter-split-apks
+                  name: apk
                   path: build/app/outputs/flutter-apk/*.apk
