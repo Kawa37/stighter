@@ -7,7 +7,8 @@ import 'package:stighter/actors/player.dart';
 class Level extends World {
   late TiledComponent level;
   final String levelName;
-  Level({required this.levelName});
+  final Player player;
+  Level({required this.levelName, required this.player});
 
   @override
   FutureOr<void> onLoad() async {
@@ -20,10 +21,7 @@ class Level extends World {
     for (final spawnPoint in spawnPointsLayer!.objects) {
       switch (spawnPoint.class_) {
         case 'Player':
-          final player = Player(
-            character: 'Mask Dude',
-            position: Vector2(spawnPoint.x, spawnPoint.y),
-          );
+          player.position = Vector2(spawnPoint.x, spawnPoint.y);
           add(player);
           break;
         default:
