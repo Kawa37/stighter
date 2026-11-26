@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
-import 'package:stighter/actors/player.dart';
-import 'package:stighter/levels/level.dart';
+import 'package:stighter/components/player.dart';
+import 'package:stighter/components/level.dart';
 
 class Stighter extends FlameGame
     with HasKeyboardHandlerComponents, DragCallbacks {
@@ -15,7 +15,7 @@ class Stighter extends FlameGame
   late final CameraComponent cam;
   Player player = Player();
   late JoystickComponent joystick;
-  bool showJoystick = true;
+  bool showJoystick = false;
 
   @override
   FutureOr<void> onLoad() async {
@@ -57,15 +57,15 @@ class Stighter extends FlameGame
       case JoystickDirection.left:
       case JoystickDirection.upLeft:
       case JoystickDirection.downLeft:
-        player.playerDirection = PlayerDirection.left;
+        player.horizontalMovement = -1;
         break;
       case JoystickDirection.right:
       case JoystickDirection.upRight:
       case JoystickDirection.downRight:
-        player.playerDirection = PlayerDirection.right;
+        player.horizontalMovement = 1;
         break;
       default:
-        player.playerDirection = PlayerDirection.none;
+        player.horizontalMovement = 0;
         break;
     }
   }
